@@ -1,11 +1,9 @@
 const model = require('../model')
 
 const getListService = {
-  getList: async (id) => {
-  console.log('  id', id)
+  getList: (id) => {
     let data = null
-    id === '0' ? data = await model.listModel.find({}) : data = await model.listModel.find({_id:id}) 
-    console.log(data,'data');
+    id === '0' ? data = model.listModel.find({}) : data = model.listModel.find({_id:id}) 
     return data
   }
 }

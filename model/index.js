@@ -8,7 +8,8 @@ const createModel = (modelName) => {
 const model = {
   userModel: createModel('user'),
   listModel: createModel('list'),
-  goodsOrderModel: createModel('goods-order'),
+  goodsOrderModel: createModel('goodsOrder'),
+  categoryModel: createModel('category'),
 }
 
 
