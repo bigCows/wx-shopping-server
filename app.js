@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var listRouter = require('./routes/list');
 var goodsOrderRouter = require('./routes/goods-order');
 var categoryRouter = require('./routes/category');
+var commonMethod = require('./common/return-data')
+const JWT = require('./utils/jwt');
 
 var app = express();
 
@@ -21,6 +23,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req,res,next) => {
+  if(req.url.includes('goods_order')) {
+    // const token = req.headers.authorization?.split('.')[1]
+    const token = req.headers.authorization
+    if(token) {
+      const payload = JWT.decrypt(token)
+      if(payload) {
+        const refreshToken = JWT.encrypt({username:payload.username},'1h')
+        res.header('Authorization',refreshToken)
+        next()
+      } else {
+        res.status(401).send(commonMethod.returnData(-1,'登录过期',[]))
+      }
+    }
+  } else {
+    next()
+  }
+})
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
