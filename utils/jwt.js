@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken')
 
+// 秘钥请勿更改!!!
 const SECRET = 'key_adk2_j2d+2'
 
 const JWT = {
+  
   /**
    * 
    * @param {*} data 要加密的数据

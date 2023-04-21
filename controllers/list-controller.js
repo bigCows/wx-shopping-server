@@ -1,4 +1,5 @@
 const getListService = require('../service/list-service')
+const commonMethod = require('../common/return-data')
 
 
 const listController = {
@@ -6,7 +7,7 @@ const listController = {
     try {
       const {id} = req.query
       const data = await getListService.getList(id)
-      res.send({ok:1,data})
+      res.send(commonMethod.returnData(0,'success',data))
     } catch (error) {
       next(error)
     }

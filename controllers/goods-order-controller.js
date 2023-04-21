@@ -1,4 +1,5 @@
 var goodsOrderService = require('../service/goods-order-service')
+var commonMethod = require('../common/return-data')
 
 const goodsOrderController = {
   goodsOrder: async (req,res,next) => {
@@ -13,7 +14,7 @@ const goodsOrderController = {
           resArr.push(item)
         }
       })
-      res.send({ok:1,data:resArr})
+      res.send(commonMethod.returnData(0,'success',resArr))
     }
   }
 }
