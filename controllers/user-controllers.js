@@ -23,7 +23,7 @@ const userController = {
         const updateInfo = await userService.users(data.openid,data.session_key,userName)
         // 如果用户信息保存成功，生成token并返回前端
         if(updateInfo) {
-          const token = JWT.encrypt({userName},'1h')
+          const token = JWT.encrypt({userName},'2h')
           res.header('Authorization',token)
           res.send(commonMethod.returnData(0,'登陆成功',token))
         }

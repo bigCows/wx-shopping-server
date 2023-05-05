@@ -31,7 +31,7 @@ app.use((req,res,next) => {
     if(token) {
       const payload = JWT.decrypt(token)
       if(payload) {
-        const refreshToken = JWT.encrypt({username:payload.username},'1h')
+        const refreshToken = JWT.encrypt({username:payload.username},'2h')
         res.header('Authorization',refreshToken)
         next()
       } else {

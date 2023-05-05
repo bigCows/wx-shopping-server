@@ -10,6 +10,20 @@ const USERTYPE = {
   session_key: String,
   username: String
 }
+
+const LISTTYPE = { 
+  _id:String,
+  id: String,
+  categoryId: String,
+  characteristic: String,
+  minPrice: Number,
+  name: String,
+  originalPrice: Number,
+  pic: String,
+  statusStr: String,
+  pics: [String],
+}
+
 const model = {
   userModel: createModel('user',USERTYPE),
   listModel: createModel('list'),
